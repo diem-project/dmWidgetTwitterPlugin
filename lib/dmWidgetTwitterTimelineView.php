@@ -7,7 +7,7 @@ class dmWidgetTwitterTimelineView extends dmWidgetPluginView
   {
     parent::configure();
     
-    $this->addRequiredVar(array('user', 'nb_tweets', 'life_time'));
+    $this->addRequiredVar(array('user', 'nb_tweets', 'life_time', 'show_profile_image', 'as_background'));
   }
 
   protected function filterViewVars(array $vars = array())
@@ -52,7 +52,8 @@ class dmWidgetTwitterTimelineView extends dmWidgetPluginView
       {
         $tweets[] = array(
           'text'        => $tweet->text,
-          'created_at'  => strtotime($tweet->created_at)
+          'created_at'  => strtotime($tweet->created_at),
+          'profile_image_url' => $tweet->user->profile_image_url
         );
       }
 

@@ -7,7 +7,7 @@ class dmWidgetTwitterSearchView extends dmWidgetPluginView
   {
     parent::configure();
     
-    $this->addRequiredVar(array('query', 'nb_tweets', 'life_time'));
+    $this->addRequiredVar(array('query', 'nb_tweets', 'life_time', 'show_profile_image', 'as_background'));
   }
 
   protected function filterViewVars(array $vars = array())
@@ -22,8 +22,6 @@ class dmWidgetTwitterSearchView extends dmWidgetPluginView
   protected function doRenderForIndex()
   {
     $tweets = array();
-
-    $viewVars = $this->getViewVars();
     
     foreach($viewVars['tweets'] as $tweet)
     {
@@ -47,12 +45,14 @@ class dmWidgetTwitterSearchView extends dmWidgetPluginView
       $tweets = array();
       $api = new TwitterApiClient();
       $collection = $api->search($query, array('max' => $nb));
-      
+
+
       foreach($collection as $tweet)
       {
         $tweets[] = array(
           'from_user'   => $tweet->from_user,
           'text'        => $tweet->text,
+          'profile_image_url' => $tweet->profile_image_url,
           'created_at'  => strtotime($tweet->created_at)
         );
       }
