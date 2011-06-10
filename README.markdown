@@ -1,5 +1,5 @@
 dmWidgetTwitterPlugin allows to connect your site with twitter.
-It packages a Diem front widget to display tweets searched by keywords.
+It packages a Diem front widget to display tweets searched by keywords or by user. Also the profile image can be displayed.
 Uses http://code.google.com/p/phptwitterbot internally.
 The plugin is fully extensible. Only works with [Diem 5.0](http://diem-project.org/) installed.
 
