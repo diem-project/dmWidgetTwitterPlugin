@@ -34,7 +34,7 @@ class TwitterApiClient
     if (is_null($server))
     {
       // Default server configuration
-      $server = new TwitterApiServer('http://twitter.com', array(
+      $server = new TwitterApiServer('http://api.twitter.com', array(
         'userAgent' => $this->getUserAgent(),
         'httpPort'  => 80,
         'timeOut'   => 30,
@@ -216,11 +216,11 @@ class TwitterApiClient
     if (!is_null($page)) $parameters['page'] = (int) $page;
 
     // build url
-    $url = 'statuses/user_timeline';
+    $url = '1/statuses/user_timeline';
 
     if (!is_null($id))
     {
-      $url = 'statuses/user_timeline/'.urlencode($id);
+			$parameters['screen_name'] = urlencode($id);
     }
 
     return $this->doCall($url, $parameters, true, false);
